@@ -1,10 +1,19 @@
 .App {
-  text-align: center;
+  text-align: left;
+  font-family: mammoth, serif;
+
 }
 
 .App-logo {
   height: 10vmin;
   pointer-events: none;
+}
+
+#main {
+  padding-left: 100px;
+  color: #1a1a1a;
+
+
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -14,13 +23,14 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #ece9e1;
+  /*background-image: url("Backgrounds/sepia-plasterboard-texture.jpg");*/
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: first;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(50px + 2vmin);
   color: white;
 }
 
@@ -35,4 +45,76 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/*.paper-background {*/
+/*  z-index: 998;*/
+/*  opacity: .3;*/
+/*  background-image: url(https://uploads-ssl.webflow.com/5f2429f172d117fcee10e819/614f353f1e11a6a7afdd8b74_6059a3e2b9ae6d2bd508685c_pt-texture-2.jpg);*/
+/*  background-position: 10%;*/
+/*  background-size: auto;*/
+/*  position: absolute;*/
+/*  top: 0%;*/
+/*  bottom: 0%;*/
+/*  left: 0%;*/
+/*  right: 0%;*/
+/*  mix-blend-mode: multiply;*/
+/*  pointer-events: none;*/
+/*}*/
+
+/* Font Declarations: */
+
+@font-face {
+  font-family: aqua;
+  src: url("Fonts/aqua.ttf");
+}
+
+@font-face {
+  font-family: henrik;
+  src: url("Fonts/Henrik-Regular.otf");
+}
+
+@font-face {
+  font-family: antone-clean;
+  src: url("Fonts/Antone Clean.woff");
+}
+
+@font-face {
+  font-family: antone-block;
+  src: url("Fonts/Antone Block.woff");
+}
+
+@font-face {
+  font-family: antone-extrude;
+  src: url("Fonts/Antone Extrude.woff");
+}
+
+@font-face {
+  font-family: antone-outline;
+  src: url("Fonts/Antone Outline.woff");
+}
+
+@font-face {
+  font-family: antone-rough;
+  src: url("Fonts/Antone Rough.woff");
+}
+
+@font-face {
+  font-family: antone-shadow-strip;
+  src: url("Fonts/Antone Shadow Strip.woff");
+}
+
+@font-face {
+  font-family: mooonlite-solid;
+  src: url("Fonts/Moonlite Solid.ttf");
+}
+
+@font-face {
+  font-family: champ-regular;
+  src: url("Fonts/THECHAMPDEMORegular.ttf");
+}
+
+@font-face {
+  font-family: mammoth;
+  src: url("Fonts/Mammoth.ttf");
 }

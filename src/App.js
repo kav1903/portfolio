@@ -2,21 +2,22 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
+
+    function hovered(e) {
+        console.log("fasd")
+    }
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
+
+        <p onMouseOver={hovered} className={"paper-background"} id="main">
+          KAVIN
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+          <p onMouseOver={hovered} className={"paper-background"} id="main">
+              DHANAPAL 5
+          </p>
+
       </header>
     </div>
   );
