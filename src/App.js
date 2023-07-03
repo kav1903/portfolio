@@ -1,141 +1,101 @@
 import logo from './logo.svg';
 import './App.css';
 import {useState} from "react";
+import React from "react";
+import kavin from "./kavin";
+import Kavin from "./kavin";
+import Binary from "./Binary";
 
 function App() {
-    const [k_is_active, k_set_active] = useState("default-stroke");
-    const [a_is_active, a_set_active] = useState("default-stroke");
-    const [v_is_active, v_set_active] = useState("default-stroke");
-    const [i_is_active, i_set_active] = useState("default-stroke");
-    const [n_is_active, n_set_active] = useState("default-stroke");
 
-    function hovered(e) {
-        const color_num = Math.floor(Math.random() * (7 + 1))
-        console.log(color_num)
-        if (e.target.id === 'k') {
-            if (color_num === 1) {
-                k_set_active("pastel-green-stroke")
-            } else if (color_num === 2) {
-                k_set_active("pastel-blue-stroke")
-            } else if (color_num === 3) {
-                k_set_active("pastel-yellow-stroke")
-            } else if (color_num === 4) {
-                k_set_active("pastel-red-stroke")
-            } else if (color_num === 5) {
-                k_set_active("pastel-purple-stroke")
-            } else if (color_num === 6) {
-                k_set_active("pastel-orange-stroke")
-            } else if (color_num === 7) {
-                k_set_active("pastel-pink-stroke")
-            } else {
-                k_set_active("default-stroke")
-            }
-        } else if (e.target.id === 'a') {
-            if (color_num === 1) {
-                a_set_active("pastel-green-stroke")
-            } else if (color_num === 2) {
-                a_set_active("pastel-blue-stroke")
-            } else if (color_num === 3) {
-                a_set_active("pastel-yellow-stroke")
-            } else if (color_num === 4) {
-                a_set_active("pastel-red-stroke")
-            } else if (color_num === 5) {
-                a_set_active("pastel-purple-stroke")
-            } else if (color_num === 6) {
-                a_set_active("pastel-orange-stroke")
-            } else if (color_num === 7) {
-                a_set_active("pastel-pink-stroke")
-            } else {
-                a_set_active("default-stroke")
-            }
-        } else if (e.target.id === 'v') {
-            if (color_num === 1) {
-                v_set_active("pastel-green-stroke")
-            } else if (color_num === 2) {
-                v_set_active("pastel-blue-stroke")
-            } else if (color_num === 3) {
-                v_set_active("pastel-yellow-stroke")
-            } else if (color_num === 4) {
-                v_set_active("pastel-red-stroke")
-            } else if (color_num === 5) {
-                v_set_active("pastel-purple-stroke")
-            } else if (color_num === 6) {
-                v_set_active("pastel-orange-stroke")
-            } else if (color_num === 7) {
-                v_set_active("pastel-pink-stroke")
-            } else {
-                v_set_active("default-stroke")
-            }
-        } else if (e.target.id === 'i') {
-            if (color_num === 1) {
-                i_set_active("pastel-green-stroke")
-            } else if (color_num === 2) {
-                i_set_active("pastel-blue-stroke")
-            } else if (color_num === 3) {
-                i_set_active("pastel-yellow-stroke")
-            } else if (color_num === 4) {
-                i_set_active("pastel-red-stroke")
-            } else if (color_num === 5) {
-                i_set_active("pastel-purple-stroke")
-            } else if (color_num === 6) {
-                i_set_active("pastel-orange-stroke")
-            } else if (color_num === 7) {
-                i_set_active("pastel-pink-stroke")
-            } else {
-                i_set_active("default-stroke")
-            }
-        } else if (e.target.id === 'n') {
-            if (color_num === 1) {
-                n_set_active("pastel-green-stroke")
-            } else if (color_num === 2) {
-                n_set_active("pastel-blue-stroke")
-            } else if (color_num === 3) {
-                n_set_active("pastel-yellow-stroke")
-            } else if (color_num === 4) {
-                n_set_active("pastel-red-stroke")
-            } else if (color_num === 5) {
-                n_set_active("pastel-purple-stroke")
-            } else if (color_num === 6) {
-                n_set_active("pastel-orange-stroke")
-            } else if (color_num === 7) {
-                n_set_active("pastel-pink-stroke")
-            } else {
-                n_set_active("default-stroke")
-            }
+    const zoomElement = document.getElementById("container")
+    // const fadeElement = document.querySelector('.fade')
+    const afterZoomElement = document.querySelector('.afterzoom')
+    const imgElement = document.getElementById('mainbox')
+    const WIDTH = document.documentElement.clientWidth
+    const HEIGHT = 5000
+    const IMAGE_WIDTH = 630
+    const IMAGE_HEIGHT = 500
+    const ZOOM_SPEED = 500 // Lower is faster
+    const ZOOM_BREAKPOINT = WIDTH / IMAGE_WIDTH // When it should stop zooming in
+    const IMAGE_HEIGHT_MAX = IMAGE_HEIGHT * ZOOM_BREAKPOINT
+    const ABSOLUTE = ZOOM_BREAKPOINT * ZOOM_SPEED // Absolute position, when the Element reached maximum size
+
+
+    const [offset, setOffset] = React.useState(0);
+    const setScroll = () => {
+        let scroll = window.scrollY
+        let temp = scroll / ZOOM_SPEED
+        let zoom = temp > 1 ? temp : 1
+
+        setOffset(window.scrollY);
+        if (zoom < ZOOM_BREAKPOINT-1) {
+            document.getElementById('main-outline').style.pointerEvents = "all"
+            document.getElementById('main').style.pointerEvents = "all"
+            document.getElementById('mainbox').style.display = 'block'
+            document.getElementsByClassName('App-header')[0].style.fontSize = `${window.scrollY/1.3 + 85}px`;
+            document.getElementById('main').style.opacity = `${-window.scrollY/1000 + 1}`
+            document.getElementById('main-outline').style.opacity = `${-window.scrollY/1000 + 1}`
+            document.getElementById('mainbox').style.position = 'fixed'
+            document.getElementById('main-outline').style.display = 'block'
+            document.getElementById('main').style.display = 'block'
+        } else {
+            // document.getElementById('mainbox').style.position = 'absolute'
+            document.getElementById('main-outline').style.pointerEvents = "none"
+            document.getElementById('main').style.pointerEvents = "none"
+            // zoomElement.style.top = `${ABSOLUTE}px`
         }
+    };
 
+    React.useEffect(() => {
+        window.addEventListener("scroll", setScroll);
+        return () => {
+            window.removeEventListener("scroll", setScroll);
+        };
+    }, []);
+
+
+
+
+
+    function scrolling(e) {
+        console.log(window.scrollY);
+        document.getElementsByClassName('App-header')[0].style.fontSize = `${window.scrollY + 85}`;
     }
 
   return (
-    <div className="App">
-      <header className="App-header">
+
+    <div className="App" onScroll={scrolling}>
+        <Binary></Binary>
+      <header id = "container" className="App-header" >
 
           {/*<div id={"test"}>*/}
-          {/*    0*/}
+          {/*    <Binary></Binary>*/}
           {/*</div>*/}
-
-          <div id={"test"}>
-              1 0 1 0 1 0 1 0 1 0 1 0
-          </div>
+          <div id={"mainbox"} >
 
 
+            <Kavin/>
 
-          <div id={"mainbox"}>
-
-            <p onMouseOver={hovered} id="main">
-                <em id={"k"} className={k_is_active}>K</em>
-                <em id={"a"} className={a_is_active}>A</em>
-                <em id={"v"} className={v_is_active}>V</em>
-                <em id={"i"} className={i_is_active}>I</em>
-                <em id={"n"} className={n_is_active}>N</em>
-            </p>
-            <p onMouseOver={hovered} id="main-outline">
+            <p  id="main-outline">
               DHANAPAL
             </p>
 
           </div>
 
+
+
       </header>
+        <div>
+            <p style={{height: "1500px"}} className={"afterzoom"} id={"subtext"}>
+                hello
+            </p>
+        </div>
+        <div>
+            <p style={{height: "1500px"}} className={"afterzoom"} id={"subtext"}>
+                hello
+            </p>
+        </div>
     </div>
   );
 }
