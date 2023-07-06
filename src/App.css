@@ -10,13 +10,23 @@
 
 }
 
+.hi {
+  color: #61dafb;
+  animation: load 5s infinite 1s alternate;
+}
+
+.binary-change-color-center {
+  color: #78c48d;
+  transition:all 0.25s;
+}
+
 .binary-change-color {
   color: #f8cc83;
   transition:all 0.25s;
 }
 
 .binary-default {
-  color: rgba(156, 163, 219, 0.38);
+  color: rgba(156, 163, 219, 0.12);
   transition:all 0.25s;
 }
 
@@ -90,20 +100,27 @@
 /*  border-image:   linear-gradient(to right, transparent 16.17vw, #383838 0.5vw) 5;*/
 /*}*/
 
+.binary {
+
+  padding: 10px;
+  padding-top: 25px;
+}
+
 #container {
 
 }
 
 #test {
 
-  line-height: 2.1em;
-  letter-spacing: 0.49em;
+  line-height: 7.4vh;
+
+  letter-spacing: 1.1vw;
   margin-left: 0.5em;
   margin-right: -1em;
   /*letter-spacing: 25px;*/
 
   /*font-size: 50px;*/
-  color: rgba(156, 163, 219, 0.38);
+  color: rgba(156, 163, 219, 0.12);
   /*color: rgba(139, 139, 139, 0.14);*/
   /*width: 100%;*/
   /*height: 100%;*/
@@ -125,6 +142,7 @@
   /*transition:all 1s;*/
   font-family: nostromo-regular-medium, serif;
   font-size: 30px;
+  animation: load 5s infinite 1s alternate;
 }
 
 #mainbox {
